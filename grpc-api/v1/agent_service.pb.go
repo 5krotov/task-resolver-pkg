@@ -22,7 +22,7 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-type StartTaskRequest struct {
+type DoTaskRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Name          string                 `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
 	Difficulty    Difficulty             `protobuf:"varint,2,opt,name=difficulty,proto3,enum=v1.Difficulty" json:"difficulty,omitempty"`
@@ -30,20 +30,20 @@ type StartTaskRequest struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *StartTaskRequest) Reset() {
-	*x = StartTaskRequest{}
+func (x *DoTaskRequest) Reset() {
+	*x = DoTaskRequest{}
 	mi := &file_agent_service_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *StartTaskRequest) String() string {
+func (x *DoTaskRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*StartTaskRequest) ProtoMessage() {}
+func (*DoTaskRequest) ProtoMessage() {}
 
-func (x *StartTaskRequest) ProtoReflect() protoreflect.Message {
+func (x *DoTaskRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_agent_service_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -55,19 +55,19 @@ func (x *StartTaskRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use StartTaskRequest.ProtoReflect.Descriptor instead.
-func (*StartTaskRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use DoTaskRequest.ProtoReflect.Descriptor instead.
+func (*DoTaskRequest) Descriptor() ([]byte, []int) {
 	return file_agent_service_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *StartTaskRequest) GetName() string {
+func (x *DoTaskRequest) GetName() string {
 	if x != nil {
 		return x.Name
 	}
 	return ""
 }
 
-func (x *StartTaskRequest) GetDifficulty() Difficulty {
+func (x *DoTaskRequest) GetDifficulty() Difficulty {
 	if x != nil {
 		return x.Difficulty
 	}
@@ -78,14 +78,14 @@ var File_agent_service_proto protoreflect.FileDescriptor
 
 const file_agent_service_proto_rawDesc = "" +
 	"\n" +
-	"\x13agent_service.proto\x12\x02v1\x1a\x1bgoogle/protobuf/empty.proto\x1a\x10difficulty.proto\"V\n" +
-	"\x10StartTaskRequest\x12\x12\n" +
+	"\x13agent_service.proto\x12\x02v1\x1a\x1bgoogle/protobuf/empty.proto\x1a\x10difficulty.proto\"S\n" +
+	"\rDoTaskRequest\x12\x12\n" +
 	"\x04name\x18\x01 \x01(\tR\x04name\x12.\n" +
 	"\n" +
 	"difficulty\x18\x02 \x01(\x0e2\x0e.v1.DifficultyR\n" +
-	"difficulty2G\n" +
-	"\fAgentService\x127\n" +
-	"\aGetUser\x12\x14.v1.StartTaskRequest\x1a\x16.google.protobuf.EmptyB9Z7github.com/task-resolver/task-resolver-pkg/grpc-api/v1/b\x06proto3"
+	"difficulty2C\n" +
+	"\fAgentService\x123\n" +
+	"\x06DoTask\x12\x11.v1.DoTaskRequest\x1a\x16.google.protobuf.EmptyB9Z7github.com/task-resolver/task-resolver-pkg/grpc-api/v1/b\x06proto3"
 
 var (
 	file_agent_service_proto_rawDescOnce sync.Once
@@ -101,14 +101,14 @@ func file_agent_service_proto_rawDescGZIP() []byte {
 
 var file_agent_service_proto_msgTypes = make([]protoimpl.MessageInfo, 1)
 var file_agent_service_proto_goTypes = []any{
-	(*StartTaskRequest)(nil), // 0: v1.StartTaskRequest
-	(Difficulty)(0),          // 1: v1.Difficulty
-	(*emptypb.Empty)(nil),    // 2: google.protobuf.Empty
+	(*DoTaskRequest)(nil), // 0: v1.DoTaskRequest
+	(Difficulty)(0),       // 1: v1.Difficulty
+	(*emptypb.Empty)(nil), // 2: google.protobuf.Empty
 }
 var file_agent_service_proto_depIdxs = []int32{
-	1, // 0: v1.StartTaskRequest.difficulty:type_name -> v1.Difficulty
-	0, // 1: v1.AgentService.GetUser:input_type -> v1.StartTaskRequest
-	2, // 2: v1.AgentService.GetUser:output_type -> google.protobuf.Empty
+	1, // 0: v1.DoTaskRequest.difficulty:type_name -> v1.Difficulty
+	0, // 1: v1.AgentService.DoTask:input_type -> v1.DoTaskRequest
+	2, // 2: v1.AgentService.DoTask:output_type -> google.protobuf.Empty
 	2, // [2:3] is the sub-list for method output_type
 	1, // [1:2] is the sub-list for method input_type
 	1, // [1:1] is the sub-list for extension type_name

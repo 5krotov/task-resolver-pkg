@@ -8,10 +8,10 @@ import "google/protobuf/empty.proto";
 import "difficulty.proto";
 
 service AgentService {
-  rpc GetUser (StartTaskRequest) returns (google.protobuf.Empty);
+  rpc DoTask (DoTaskRequest) returns (google.protobuf.Empty);
 }
 
-message StartTaskRequest {
+message DoTaskRequest {
   string name = 1;
   Difficulty difficulty = 2;
 }
