@@ -8,7 +8,7 @@ import (
 	"os"
 )
 
-func loadTLSCerts(certPath, keyPath, caPath string) (*x509.CertPool, *tls.Certificate, error) {
+func LoadTLSCerts(certPath, keyPath, caPath string) (*x509.CertPool, *tls.Certificate, error) {
 	cert, err := tls.LoadX509KeyPair(certPath, keyPath)
 	if err != nil {
 		return nil, nil, fmt.Errorf("failed to load server cert: %v", err)
@@ -27,8 +27,8 @@ func loadTLSCerts(certPath, keyPath, caPath string) (*x509.CertPool, *tls.Certif
 	return certPool, &cert, nil
 }
 
-func loadTLSServerCreds(certPath, keyPath, caPath string) (credentials.TransportCredentials, error) {
-	certPool, cert, err := loadTLSCerts(certPath, keyPath, caPath)
+func LoadTLSServerCreds(certPath, keyPath, caPath string) (credentials.TransportCredentials, error) {
+	certPool, cert, err := LoadTLSCerts(certPath, keyPath, caPath)
 	if err != nil {
 		return nil, fmt.Errorf("failed to load certs: %v", err)
 	}
@@ -43,8 +43,8 @@ func loadTLSServerCreds(certPath, keyPath, caPath string) (credentials.Transport
 	return credentials.NewTLS(config), nil
 }
 
-func loadTLSClientCreds(certPath, keyPath, caPath, serverName string) (credentials.TransportCredentials, error) {
-	certPool, cert, err := loadTLSCerts(certPath, keyPath, caPath)
+func LoadTLSClientCreds(certPath, keyPath, caPath, serverName string) (credentials.TransportCredentials, error) {
+	certPool, cert, err := LoadTLSCerts(certPath, keyPath, caPath)
 	if err != nil {
 		return nil, fmt.Errorf("failed to load certs: %v", err)
 	}
