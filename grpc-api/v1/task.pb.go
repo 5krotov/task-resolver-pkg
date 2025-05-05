@@ -25,7 +25,7 @@ type Task struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
 	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
-	Difficulty    int32                  `protobuf:"varint,3,opt,name=difficulty,proto3" json:"difficulty,omitempty"`
+	Difficulty    Difficulty             `protobuf:"varint,3,opt,name=difficulty,proto3,enum=v1.Difficulty" json:"difficulty,omitempty"`
 	StatusHistory []*Status              `protobuf:"bytes,4,rep,name=status_history,json=statusHistory,proto3" json:"status_history,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -75,11 +75,11 @@ func (x *Task) GetName() string {
 	return ""
 }
 
-func (x *Task) GetDifficulty() int32 {
+func (x *Task) GetDifficulty() Difficulty {
 	if x != nil {
 		return x.Difficulty
 	}
-	return 0
+	return Difficulty_UNSPECIFIED
 }
 
 func (x *Task) GetStatusHistory() []*Status {
@@ -94,12 +94,12 @@ var File_task_proto protoreflect.FileDescriptor
 const file_task_proto_rawDesc = "" +
 	"\n" +
 	"\n" +
-	"task.proto\x12\x02v1\x1a\fstatus.proto\"}\n" +
+	"task.proto\x12\x02v1\x1a\fstatus.proto\x1a\x10difficulty.proto\"\x8d\x01\n" +
 	"\x04Task\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x12\n" +
-	"\x04name\x18\x02 \x01(\tR\x04name\x12\x1e\n" +
+	"\x04name\x18\x02 \x01(\tR\x04name\x12.\n" +
 	"\n" +
-	"difficulty\x18\x03 \x01(\x05R\n" +
+	"difficulty\x18\x03 \x01(\x0e2\x0e.v1.DifficultyR\n" +
 	"difficulty\x121\n" +
 	"\x0estatus_history\x18\x04 \x03(\v2\n" +
 	".v1.StatusR\rstatusHistoryB9Z7github.com/task-resolver/task-resolver-pkg/grpc-api/v1/b\x06proto3"
@@ -118,16 +118,18 @@ func file_task_proto_rawDescGZIP() []byte {
 
 var file_task_proto_msgTypes = make([]protoimpl.MessageInfo, 1)
 var file_task_proto_goTypes = []any{
-	(*Task)(nil),   // 0: v1.Task
-	(*Status)(nil), // 1: v1.Status
+	(*Task)(nil),    // 0: v1.Task
+	(Difficulty)(0), // 1: v1.Difficulty
+	(*Status)(nil),  // 2: v1.Status
 }
 var file_task_proto_depIdxs = []int32{
-	1, // 0: v1.Task.status_history:type_name -> v1.Status
-	1, // [1:1] is the sub-list for method output_type
-	1, // [1:1] is the sub-list for method input_type
-	1, // [1:1] is the sub-list for extension type_name
-	1, // [1:1] is the sub-list for extension extendee
-	0, // [0:1] is the sub-list for field type_name
+	1, // 0: v1.Task.difficulty:type_name -> v1.Difficulty
+	2, // 1: v1.Task.status_history:type_name -> v1.Status
+	2, // [2:2] is the sub-list for method output_type
+	2, // [2:2] is the sub-list for method input_type
+	2, // [2:2] is the sub-list for extension type_name
+	2, // [2:2] is the sub-list for extension extendee
+	0, // [0:2] is the sub-list for field type_name
 }
 
 func init() { file_task_proto_init() }
@@ -136,6 +138,7 @@ func file_task_proto_init() {
 		return
 	}
 	file_status_proto_init()
+	file_difficulty_proto_init()
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
