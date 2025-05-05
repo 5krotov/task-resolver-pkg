@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package service;
+package v1;
 
 option go_package = "github.com/task-resolver/task-resolver-pkg/grpc-api/v1/";
 
