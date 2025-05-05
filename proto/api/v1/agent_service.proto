@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package v1;
+
+option go_package = "github.com/task-resolver/task-resolver-pkg/grpc-api/v1/";
+
+import "google/protobuf/empty.proto";
+import "difficulty.proto";
+
+service AgentService {
+  rpc GetUser (StartTaskRequest) returns (google.protobuf.Empty);
+}
+
+message StartTaskRequest {
+  string name = 1;
+  Difficulty difficulty = 2;
+}

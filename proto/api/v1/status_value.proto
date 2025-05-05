@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package v1;
+
+option go_package = "github.com/task-resolver/task-resolver-pkg/grpc-api/v1/";
+
+enum StatusValue {
+  STATUS_UNSPECIFIED = 0;
+  STATUS_CREATED = 1;
+  STATUS_PENDING = 2;
+  STATUS_INPROGRESS = 3;
+  STATUS_DONE = 4;
+}

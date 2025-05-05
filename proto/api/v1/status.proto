@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package v1;
+
+option go_package = "github.com/task-resolver/task-resolver-pkg/grpc-api/v1/";
+
+import "google/protobuf/timestamp.proto";
+import "status_value.proto";
+
+message Status {
+  StatusValue status = 1;
+  google.protobuf.Timestamp timestamp = 2;
+}

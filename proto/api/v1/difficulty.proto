@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+package v1;
+
+option go_package = "github.com/task-resolver/task-resolver-pkg/grpc-api/v1/";
+
+enum Difficulty {
+  UNSPECIFIED = 0;
+  EASY = 1;
+  NORMAL = 2;
+  HARD = 3;
+}

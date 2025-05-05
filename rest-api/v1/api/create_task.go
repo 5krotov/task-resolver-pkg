@@ -1,7 +1,7 @@
-package v1
+package api
 
 import (
-	"github.com/5krotov/task-resolver-pkg/entity/v1"
+	"github.com/5krotov/task-resolver-pkg/rest-api/v1/entity"
 )
 
 type CreateTaskRequest struct {
@@ -10,5 +10,5 @@ type CreateTaskRequest struct {
 }
 
 type CreateTaskResponse struct {
-	v1.Task
+	entity.Task
 }
