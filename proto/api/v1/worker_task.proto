@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+package v1;
+
+option go_package = "github.com/task-resolver/task-resolver-pkg/grpc-api/v1/";
+
+import "difficulty.proto";
+
+message WorkerTask {
+  int64 id = 1;
+  Difficulty difficulty = 2;
+}
