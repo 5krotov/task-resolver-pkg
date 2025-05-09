@@ -4,14 +4,8 @@ package v1;
 
 option go_package = "github.com/task-resolver/task-resolver-pkg/grpc-api/v1/";
 
-import "google/protobuf/empty.proto";
-import "difficulty.proto";
+import "api.proto";
 
 service AgentService {
-  rpc DoTask (DoTaskRequest) returns (google.protobuf.Empty);
-}
-
-message DoTaskRequest {
-  string name = 1;
-  Difficulty difficulty = 2;
+  rpc CreateTask(CreateTaskRequest) returns (CreateTaskResponse);
 }

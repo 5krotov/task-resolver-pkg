@@ -4,46 +4,12 @@ package v1;
 
 option go_package = "github.com/task-resolver/task-resolver-pkg/grpc-api/v1/";
 
+import "api.proto";
 import "google/protobuf/empty.proto";
-import "difficulty.proto";
-import "task.proto";
-import "status.proto";
 
 service DataProviderService {
   rpc SearchTask (SearchTaskRequest) returns (SearchTaskResponse);
   rpc CreateTask (CreateTaskRequest) returns (CreateTaskResponse);
   rpc GetTask (GetTaskRequest) returns (GetTaskResponse);
   rpc UpdateStatus (UpdateStatusRequest) returns (google.protobuf.Empty);
-}
-
-message SearchTaskRequest {
-  int64 page = 1;
-  int64 per_page = 2;
-}
-
-message SearchTaskResponse {
-  int64 pages = 1;
-  repeated Task tasks = 2;
-}
-
-message CreateTaskRequest {
-  string name = 1;
-  Difficulty difficulty = 2;
-}
-
-message CreateTaskResponse {
-  Task task = 1;
-}
-
-message GetTaskRequest {
-  int64 id = 1;
-}
-
-message GetTaskResponse {
-  Task task = 1;
-}
-
-message UpdateStatusRequest {
-  int64 id = 1;
-  Status status = 2;
 }

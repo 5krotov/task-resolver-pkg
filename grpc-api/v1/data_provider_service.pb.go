@@ -11,7 +11,6 @@ import (
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	emptypb "google.golang.org/protobuf/types/known/emptypb"
 	reflect "reflect"
-	sync "sync"
 	unsafe "unsafe"
 )
 
@@ -22,373 +21,11 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-type SearchTaskRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Page          int64                  `protobuf:"varint,1,opt,name=page,proto3" json:"page,omitempty"`
-	PerPage       int64                  `protobuf:"varint,2,opt,name=per_page,json=perPage,proto3" json:"per_page,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *SearchTaskRequest) Reset() {
-	*x = SearchTaskRequest{}
-	mi := &file_data_provider_service_proto_msgTypes[0]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *SearchTaskRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*SearchTaskRequest) ProtoMessage() {}
-
-func (x *SearchTaskRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_data_provider_service_proto_msgTypes[0]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use SearchTaskRequest.ProtoReflect.Descriptor instead.
-func (*SearchTaskRequest) Descriptor() ([]byte, []int) {
-	return file_data_provider_service_proto_rawDescGZIP(), []int{0}
-}
-
-func (x *SearchTaskRequest) GetPage() int64 {
-	if x != nil {
-		return x.Page
-	}
-	return 0
-}
-
-func (x *SearchTaskRequest) GetPerPage() int64 {
-	if x != nil {
-		return x.PerPage
-	}
-	return 0
-}
-
-type SearchTaskResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Pages         int64                  `protobuf:"varint,1,opt,name=pages,proto3" json:"pages,omitempty"`
-	Tasks         []*Task                `protobuf:"bytes,2,rep,name=tasks,proto3" json:"tasks,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *SearchTaskResponse) Reset() {
-	*x = SearchTaskResponse{}
-	mi := &file_data_provider_service_proto_msgTypes[1]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *SearchTaskResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*SearchTaskResponse) ProtoMessage() {}
-
-func (x *SearchTaskResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_data_provider_service_proto_msgTypes[1]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use SearchTaskResponse.ProtoReflect.Descriptor instead.
-func (*SearchTaskResponse) Descriptor() ([]byte, []int) {
-	return file_data_provider_service_proto_rawDescGZIP(), []int{1}
-}
-
-func (x *SearchTaskResponse) GetPages() int64 {
-	if x != nil {
-		return x.Pages
-	}
-	return 0
-}
-
-func (x *SearchTaskResponse) GetTasks() []*Task {
-	if x != nil {
-		return x.Tasks
-	}
-	return nil
-}
-
-type CreateTaskRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Name          string                 `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
-	Difficulty    Difficulty             `protobuf:"varint,2,opt,name=difficulty,proto3,enum=v1.Difficulty" json:"difficulty,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *CreateTaskRequest) Reset() {
-	*x = CreateTaskRequest{}
-	mi := &file_data_provider_service_proto_msgTypes[2]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *CreateTaskRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*CreateTaskRequest) ProtoMessage() {}
-
-func (x *CreateTaskRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_data_provider_service_proto_msgTypes[2]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use CreateTaskRequest.ProtoReflect.Descriptor instead.
-func (*CreateTaskRequest) Descriptor() ([]byte, []int) {
-	return file_data_provider_service_proto_rawDescGZIP(), []int{2}
-}
-
-func (x *CreateTaskRequest) GetName() string {
-	if x != nil {
-		return x.Name
-	}
-	return ""
-}
-
-func (x *CreateTaskRequest) GetDifficulty() Difficulty {
-	if x != nil {
-		return x.Difficulty
-	}
-	return Difficulty_UNSPECIFIED
-}
-
-type CreateTaskResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Task          *Task                  `protobuf:"bytes,1,opt,name=task,proto3" json:"task,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *CreateTaskResponse) Reset() {
-	*x = CreateTaskResponse{}
-	mi := &file_data_provider_service_proto_msgTypes[3]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *CreateTaskResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*CreateTaskResponse) ProtoMessage() {}
-
-func (x *CreateTaskResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_data_provider_service_proto_msgTypes[3]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use CreateTaskResponse.ProtoReflect.Descriptor instead.
-func (*CreateTaskResponse) Descriptor() ([]byte, []int) {
-	return file_data_provider_service_proto_rawDescGZIP(), []int{3}
-}
-
-func (x *CreateTaskResponse) GetTask() *Task {
-	if x != nil {
-		return x.Task
-	}
-	return nil
-}
-
-type GetTaskRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *GetTaskRequest) Reset() {
-	*x = GetTaskRequest{}
-	mi := &file_data_provider_service_proto_msgTypes[4]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *GetTaskRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*GetTaskRequest) ProtoMessage() {}
-
-func (x *GetTaskRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_data_provider_service_proto_msgTypes[4]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use GetTaskRequest.ProtoReflect.Descriptor instead.
-func (*GetTaskRequest) Descriptor() ([]byte, []int) {
-	return file_data_provider_service_proto_rawDescGZIP(), []int{4}
-}
-
-func (x *GetTaskRequest) GetId() int64 {
-	if x != nil {
-		return x.Id
-	}
-	return 0
-}
-
-type GetTaskResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Task          *Task                  `protobuf:"bytes,1,opt,name=task,proto3" json:"task,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *GetTaskResponse) Reset() {
-	*x = GetTaskResponse{}
-	mi := &file_data_provider_service_proto_msgTypes[5]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *GetTaskResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*GetTaskResponse) ProtoMessage() {}
-
-func (x *GetTaskResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_data_provider_service_proto_msgTypes[5]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use GetTaskResponse.ProtoReflect.Descriptor instead.
-func (*GetTaskResponse) Descriptor() ([]byte, []int) {
-	return file_data_provider_service_proto_rawDescGZIP(), []int{5}
-}
-
-func (x *GetTaskResponse) GetTask() *Task {
-	if x != nil {
-		return x.Task
-	}
-	return nil
-}
-
-type UpdateStatusRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
-	Status        *Status                `protobuf:"bytes,2,opt,name=status,proto3" json:"status,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *UpdateStatusRequest) Reset() {
-	*x = UpdateStatusRequest{}
-	mi := &file_data_provider_service_proto_msgTypes[6]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *UpdateStatusRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*UpdateStatusRequest) ProtoMessage() {}
-
-func (x *UpdateStatusRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_data_provider_service_proto_msgTypes[6]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use UpdateStatusRequest.ProtoReflect.Descriptor instead.
-func (*UpdateStatusRequest) Descriptor() ([]byte, []int) {
-	return file_data_provider_service_proto_rawDescGZIP(), []int{6}
-}
-
-func (x *UpdateStatusRequest) GetId() int64 {
-	if x != nil {
-		return x.Id
-	}
-	return 0
-}
-
-func (x *UpdateStatusRequest) GetStatus() *Status {
-	if x != nil {
-		return x.Status
-	}
-	return nil
-}
-
 var File_data_provider_service_proto protoreflect.FileDescriptor
 
 const file_data_provider_service_proto_rawDesc = "" +
 	"\n" +
-	"\x1bdata_provider_service.proto\x12\x02v1\x1a\x1bgoogle/protobuf/empty.proto\x1a\x10difficulty.proto\x1a\n" +
-	"task.proto\x1a\fstatus.proto\"B\n" +
-	"\x11SearchTaskRequest\x12\x12\n" +
-	"\x04page\x18\x01 \x01(\x03R\x04page\x12\x19\n" +
-	"\bper_page\x18\x02 \x01(\x03R\aperPage\"J\n" +
-	"\x12SearchTaskResponse\x12\x14\n" +
-	"\x05pages\x18\x01 \x01(\x03R\x05pages\x12\x1e\n" +
-	"\x05tasks\x18\x02 \x03(\v2\b.v1.TaskR\x05tasks\"W\n" +
-	"\x11CreateTaskRequest\x12\x12\n" +
-	"\x04name\x18\x01 \x01(\tR\x04name\x12.\n" +
-	"\n" +
-	"difficulty\x18\x02 \x01(\x0e2\x0e.v1.DifficultyR\n" +
-	"difficulty\"2\n" +
-	"\x12CreateTaskResponse\x12\x1c\n" +
-	"\x04task\x18\x01 \x01(\v2\b.v1.TaskR\x04task\" \n" +
-	"\x0eGetTaskRequest\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\x03R\x02id\"/\n" +
-	"\x0fGetTaskResponse\x12\x1c\n" +
-	"\x04task\x18\x01 \x01(\v2\b.v1.TaskR\x04task\"I\n" +
-	"\x13UpdateStatusRequest\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\x03R\x02id\x12\"\n" +
-	"\x06status\x18\x02 \x01(\v2\n" +
-	".v1.StatusR\x06status2\x84\x02\n" +
+	"\x1bdata_provider_service.proto\x12\x02v1\x1a\tapi.proto\x1a\x1bgoogle/protobuf/empty.proto2\x84\x02\n" +
 	"\x13DataProviderService\x12;\n" +
 	"\n" +
 	"SearchTask\x12\x15.v1.SearchTaskRequest\x1a\x16.v1.SearchTaskResponse\x12;\n" +
@@ -397,51 +34,30 @@ const file_data_provider_service_proto_rawDesc = "" +
 	"\aGetTask\x12\x12.v1.GetTaskRequest\x1a\x13.v1.GetTaskResponse\x12?\n" +
 	"\fUpdateStatus\x12\x17.v1.UpdateStatusRequest\x1a\x16.google.protobuf.EmptyB9Z7github.com/task-resolver/task-resolver-pkg/grpc-api/v1/b\x06proto3"
 
-var (
-	file_data_provider_service_proto_rawDescOnce sync.Once
-	file_data_provider_service_proto_rawDescData []byte
-)
-
-func file_data_provider_service_proto_rawDescGZIP() []byte {
-	file_data_provider_service_proto_rawDescOnce.Do(func() {
-		file_data_provider_service_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_data_provider_service_proto_rawDesc), len(file_data_provider_service_proto_rawDesc)))
-	})
-	return file_data_provider_service_proto_rawDescData
-}
-
-var file_data_provider_service_proto_msgTypes = make([]protoimpl.MessageInfo, 7)
 var file_data_provider_service_proto_goTypes = []any{
 	(*SearchTaskRequest)(nil),   // 0: v1.SearchTaskRequest
-	(*SearchTaskResponse)(nil),  // 1: v1.SearchTaskResponse
-	(*CreateTaskRequest)(nil),   // 2: v1.CreateTaskRequest
-	(*CreateTaskResponse)(nil),  // 3: v1.CreateTaskResponse
-	(*GetTaskRequest)(nil),      // 4: v1.GetTaskRequest
-	(*GetTaskResponse)(nil),     // 5: v1.GetTaskResponse
-	(*UpdateStatusRequest)(nil), // 6: v1.UpdateStatusRequest
-	(*Task)(nil),                // 7: v1.Task
-	(Difficulty)(0),             // 8: v1.Difficulty
-	(*Status)(nil),              // 9: v1.Status
-	(*emptypb.Empty)(nil),       // 10: google.protobuf.Empty
+	(*CreateTaskRequest)(nil),   // 1: v1.CreateTaskRequest
+	(*GetTaskRequest)(nil),      // 2: v1.GetTaskRequest
+	(*UpdateStatusRequest)(nil), // 3: v1.UpdateStatusRequest
+	(*SearchTaskResponse)(nil),  // 4: v1.SearchTaskResponse
+	(*CreateTaskResponse)(nil),  // 5: v1.CreateTaskResponse
+	(*GetTaskResponse)(nil),     // 6: v1.GetTaskResponse
+	(*emptypb.Empty)(nil),       // 7: google.protobuf.Empty
 }
 var file_data_provider_service_proto_depIdxs = []int32{
-	7,  // 0: v1.SearchTaskResponse.tasks:type_name -> v1.Task
-	8,  // 1: v1.CreateTaskRequest.difficulty:type_name -> v1.Difficulty
-	7,  // 2: v1.CreateTaskResponse.task:type_name -> v1.Task
-	7,  // 3: v1.GetTaskResponse.task:type_name -> v1.Task
-	9,  // 4: v1.UpdateStatusRequest.status:type_name -> v1.Status
-	0,  // 5: v1.DataProviderService.SearchTask:input_type -> v1.SearchTaskRequest
-	2,  // 6: v1.DataProviderService.CreateTask:input_type -> v1.CreateTaskRequest
-	4,  // 7: v1.DataProviderService.GetTask:input_type -> v1.GetTaskRequest
-	6,  // 8: v1.DataProviderService.UpdateStatus:input_type -> v1.UpdateStatusRequest
-	1,  // 9: v1.DataProviderService.SearchTask:output_type -> v1.SearchTaskResponse
-	3,  // 10: v1.DataProviderService.CreateTask:output_type -> v1.CreateTaskResponse
-	5,  // 11: v1.DataProviderService.GetTask:output_type -> v1.GetTaskResponse
-	10, // 12: v1.DataProviderService.UpdateStatus:output_type -> google.protobuf.Empty
-	9,  // [9:13] is the sub-list for method output_type
-	5,  // [5:9] is the sub-list for method input_type
-	5,  // [5:5] is the sub-list for extension type_name
-	5,  // [5:5] is the sub-list for extension extendee
-	0,  // [0:5] is the sub-list for field type_name
+	0, // 0: v1.DataProviderService.SearchTask:input_type -> v1.SearchTaskRequest
+	1, // 1: v1.DataProviderService.CreateTask:input_type -> v1.CreateTaskRequest
+	2, // 2: v1.DataProviderService.GetTask:input_type -> v1.GetTaskRequest
+	3, // 3: v1.DataProviderService.UpdateStatus:input_type -> v1.UpdateStatusRequest
+	4, // 4: v1.DataProviderService.SearchTask:output_type -> v1.SearchTaskResponse
+	5, // 5: v1.DataProviderService.CreateTask:output_type -> v1.CreateTaskResponse
+	6, // 6: v1.DataProviderService.GetTask:output_type -> v1.GetTaskResponse
+	7, // 7: v1.DataProviderService.UpdateStatus:output_type -> google.protobuf.Empty
+	4, // [4:8] is the sub-list for method output_type
+	0, // [0:4] is the sub-list for method input_type
+	0, // [0:0] is the sub-list for extension type_name
+	0, // [0:0] is the sub-list for extension extendee
+	0, // [0:0] is the sub-list for field type_name
 }
 
 func init() { file_data_provider_service_proto_init() }
@@ -449,22 +65,19 @@ func file_data_provider_service_proto_init() {
 	if File_data_provider_service_proto != nil {
 		return
 	}
-	file_difficulty_proto_init()
-	file_task_proto_init()
-	file_status_proto_init()
+	file_api_proto_init()
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_data_provider_service_proto_rawDesc), len(file_data_provider_service_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   7,
+			NumMessages:   0,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
 		GoTypes:           file_data_provider_service_proto_goTypes,
 		DependencyIndexes: file_data_provider_service_proto_depIdxs,
-		MessageInfos:      file_data_provider_service_proto_msgTypes,
 	}.Build()
 	File_data_provider_service_proto = out.File
 	file_data_provider_service_proto_goTypes = nil

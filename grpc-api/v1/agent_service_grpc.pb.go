@@ -11,7 +11,6 @@ import (
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
-	emptypb "google.golang.org/protobuf/types/known/emptypb"
 )
 
 // This is a compile-time assertion to ensure that this generated file
@@ -20,14 +19,14 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	AgentService_DoTask_FullMethodName = "/v1.AgentService/DoTask"
+	AgentService_CreateTask_FullMethodName = "/v1.AgentService/CreateTask"
 )
 
 // AgentServiceClient is the client API for AgentService service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type AgentServiceClient interface {
-	DoTask(ctx context.Context, in *DoTaskRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	CreateTask(ctx context.Context, in *CreateTaskRequest, opts ...grpc.CallOption) (*CreateTaskResponse, error)
 }
 
 type agentServiceClient struct {
@@ -38,10 +37,10 @@ func NewAgentServiceClient(cc grpc.ClientConnInterface) AgentServiceClient {
 	return &agentServiceClient{cc}
 }
 
-func (c *agentServiceClient) DoTask(ctx context.Context, in *DoTaskRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+func (c *agentServiceClient) CreateTask(ctx context.Context, in *CreateTaskRequest, opts ...grpc.CallOption) (*CreateTaskResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(emptypb.Empty)
-	err := c.cc.Invoke(ctx, AgentService_DoTask_FullMethodName, in, out, cOpts...)
+	out := new(CreateTaskResponse)
+	err := c.cc.Invoke(ctx, AgentService_CreateTask_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -52,7 +51,7 @@ func (c *agentServiceClient) DoTask(ctx context.Context, in *DoTaskRequest, opts
 // All implementations must embed UnimplementedAgentServiceServer
 // for forward compatibility.
 type AgentServiceServer interface {
-	DoTask(context.Context, *DoTaskRequest) (*emptypb.Empty, error)
+	CreateTask(context.Context, *CreateTaskRequest) (*CreateTaskResponse, error)
 	mustEmbedUnimplementedAgentServiceServer()
 }
 
@@ -63,8 +62,8 @@ type AgentServiceServer interface {
 // pointer dereference when methods are called.
 type UnimplementedAgentServiceServer struct{}
 
-func (UnimplementedAgentServiceServer) DoTask(context.Context, *DoTaskRequest) (*emptypb.Empty, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method DoTask not implemented")
+func (UnimplementedAgentServiceServer) CreateTask(context.Context, *CreateTaskRequest) (*CreateTaskResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateTask not implemented")
 }
 func (UnimplementedAgentServiceServer) mustEmbedUnimplementedAgentServiceServer() {}
 func (UnimplementedAgentServiceServer) testEmbeddedByValue()                      {}
@@ -87,20 +86,20 @@ func RegisterAgentServiceServer(s grpc.ServiceRegistrar, srv AgentServiceServer)
 	s.RegisterService(&AgentService_ServiceDesc, srv)
 }
 
-func _AgentService_DoTask_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DoTaskRequest)
+func _AgentService_CreateTask_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateTaskRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(AgentServiceServer).DoTask(ctx, in)
+		return srv.(AgentServiceServer).CreateTask(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: AgentService_DoTask_FullMethodName,
+		FullMethod: AgentService_CreateTask_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AgentServiceServer).DoTask(ctx, req.(*DoTaskRequest))
+		return srv.(AgentServiceServer).CreateTask(ctx, req.(*CreateTaskRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -113,8 +112,8 @@ var AgentService_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*AgentServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "DoTask",
-			Handler:    _AgentService_DoTask_Handler,
+			MethodName: "CreateTask",
+			Handler:    _AgentService_CreateTask_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

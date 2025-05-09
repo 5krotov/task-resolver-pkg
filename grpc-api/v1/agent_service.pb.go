@@ -9,9 +9,7 @@ package v1
 import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
-	emptypb "google.golang.org/protobuf/types/known/emptypb"
 	reflect "reflect"
-	sync "sync"
 	unsafe "unsafe"
 )
 
@@ -22,98 +20,27 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-type DoTaskRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Name          string                 `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
-	Difficulty    Difficulty             `protobuf:"varint,2,opt,name=difficulty,proto3,enum=v1.Difficulty" json:"difficulty,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *DoTaskRequest) Reset() {
-	*x = DoTaskRequest{}
-	mi := &file_agent_service_proto_msgTypes[0]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *DoTaskRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*DoTaskRequest) ProtoMessage() {}
-
-func (x *DoTaskRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_agent_service_proto_msgTypes[0]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use DoTaskRequest.ProtoReflect.Descriptor instead.
-func (*DoTaskRequest) Descriptor() ([]byte, []int) {
-	return file_agent_service_proto_rawDescGZIP(), []int{0}
-}
-
-func (x *DoTaskRequest) GetName() string {
-	if x != nil {
-		return x.Name
-	}
-	return ""
-}
-
-func (x *DoTaskRequest) GetDifficulty() Difficulty {
-	if x != nil {
-		return x.Difficulty
-	}
-	return Difficulty_UNSPECIFIED
-}
-
 var File_agent_service_proto protoreflect.FileDescriptor
 
 const file_agent_service_proto_rawDesc = "" +
 	"\n" +
-	"\x13agent_service.proto\x12\x02v1\x1a\x1bgoogle/protobuf/empty.proto\x1a\x10difficulty.proto\"S\n" +
-	"\rDoTaskRequest\x12\x12\n" +
-	"\x04name\x18\x01 \x01(\tR\x04name\x12.\n" +
+	"\x13agent_service.proto\x12\x02v1\x1a\tapi.proto2K\n" +
+	"\fAgentService\x12;\n" +
 	"\n" +
-	"difficulty\x18\x02 \x01(\x0e2\x0e.v1.DifficultyR\n" +
-	"difficulty2C\n" +
-	"\fAgentService\x123\n" +
-	"\x06DoTask\x12\x11.v1.DoTaskRequest\x1a\x16.google.protobuf.EmptyB9Z7github.com/task-resolver/task-resolver-pkg/grpc-api/v1/b\x06proto3"
+	"CreateTask\x12\x15.v1.CreateTaskRequest\x1a\x16.v1.CreateTaskResponseB9Z7github.com/task-resolver/task-resolver-pkg/grpc-api/v1/b\x06proto3"
 
-var (
-	file_agent_service_proto_rawDescOnce sync.Once
-	file_agent_service_proto_rawDescData []byte
-)
-
-func file_agent_service_proto_rawDescGZIP() []byte {
-	file_agent_service_proto_rawDescOnce.Do(func() {
-		file_agent_service_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_agent_service_proto_rawDesc), len(file_agent_service_proto_rawDesc)))
-	})
-	return file_agent_service_proto_rawDescData
-}
-
-var file_agent_service_proto_msgTypes = make([]protoimpl.MessageInfo, 1)
 var file_agent_service_proto_goTypes = []any{
-	(*DoTaskRequest)(nil), // 0: v1.DoTaskRequest
-	(Difficulty)(0),       // 1: v1.Difficulty
-	(*emptypb.Empty)(nil), // 2: google.protobuf.Empty
+	(*CreateTaskRequest)(nil),  // 0: v1.CreateTaskRequest
+	(*CreateTaskResponse)(nil), // 1: v1.CreateTaskResponse
 }
 var file_agent_service_proto_depIdxs = []int32{
-	1, // 0: v1.DoTaskRequest.difficulty:type_name -> v1.Difficulty
-	0, // 1: v1.AgentService.DoTask:input_type -> v1.DoTaskRequest
-	2, // 2: v1.AgentService.DoTask:output_type -> google.protobuf.Empty
-	2, // [2:3] is the sub-list for method output_type
-	1, // [1:2] is the sub-list for method input_type
-	1, // [1:1] is the sub-list for extension type_name
-	1, // [1:1] is the sub-list for extension extendee
-	0, // [0:1] is the sub-list for field type_name
+	0, // 0: v1.AgentService.CreateTask:input_type -> v1.CreateTaskRequest
+	1, // 1: v1.AgentService.CreateTask:output_type -> v1.CreateTaskResponse
+	1, // [1:2] is the sub-list for method output_type
+	0, // [0:1] is the sub-list for method input_type
+	0, // [0:0] is the sub-list for extension type_name
+	0, // [0:0] is the sub-list for extension extendee
+	0, // [0:0] is the sub-list for field type_name
 }
 
 func init() { file_agent_service_proto_init() }
@@ -121,20 +48,19 @@ func file_agent_service_proto_init() {
 	if File_agent_service_proto != nil {
 		return
 	}
-	file_difficulty_proto_init()
+	file_api_proto_init()
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_agent_service_proto_rawDesc), len(file_agent_service_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   1,
+			NumMessages:   0,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
 		GoTypes:           file_agent_service_proto_goTypes,
 		DependencyIndexes: file_agent_service_proto_depIdxs,
-		MessageInfos:      file_agent_service_proto_msgTypes,
 	}.Build()
 	File_agent_service_proto = out.File
 	file_agent_service_proto_goTypes = nil
